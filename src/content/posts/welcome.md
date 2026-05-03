@@ -4,6 +4,8 @@ description: "Best LLM Scanners covers defensive AI engineering — guardrails, 
 pubDate: 2026-05-03
 tags: ["meta"]
 category: "site"
+heroImage: https://aisec-imagegen.th3gptoperator.workers.dev/featured/bestllmscanners.com/welcome.png
+heroAlt: "What this site is for"
 ---
 
 Best LLM Scanners exists for the engineers shipping LLM features who got handed a "make it safe" requirement with no playbook.
