@@ -1,0 +1,43 @@
+/* Brand override generated from shared/brand-books/bestllmscanners-com.json
+ * This makes bestllmscanners-com visually distinct from sister sites in the same cluster.
+ * Loaded after globals.css; overrides cluster defaults with brand-book values.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg: 236 254 255;
+  --fg: 12 74 110;
+  --surface: 207 250 254;
+  --muted-fg: 103 232 249;
+
+  --brand-accent-rgb: 8 145 178;
+
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Source Code Pro", system-ui, sans-serif;
+
+  --brand-tone: "scanner-cyan";
+}
+
+body[data-cluster] {
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
+  font-family: var(--font-body);
+}
+
+body[data-cluster] h1, body[data-cluster] h2, body[data-cluster] h3,
+body[data-cluster] .display {
+  font-family: var(--font-display);
+}
+
+/* Override accent ramp midpoint with brand accent */
+body[data-cluster] {
+  --accent-500: var(--brand-accent-rgb);
+  --accent-600: var(--brand-accent-rgb);
+}
+
+/* Surface treatment per tone */
+body[data-cluster] .card,
+body[data-cluster] article {
+  background: rgb(var(--surface));
+}
