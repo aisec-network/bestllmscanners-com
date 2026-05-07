@@ -5,13 +5,12 @@ const persona = {
   bioShort: "Detection engineer and MITRE ATLAS contributor. Writes about defending AI systems using structured frameworks \u2014 not vendor hype. Blue-team-first, skeptical of AI-solves-everything narratives.",
   bioLong: "Daniel Park is a detection engineer who has spent the last six years building AI-aware defensive systems for financial services and critical infrastructure. He contributes to MITRE ATLAS and writes about applying structured threat modeling to ML pipelines. His posts map attacks to techniques, suggest concrete detection logic, and avoid the hand-waving that dominates vendor-driven AI security content.",
   voice: ["analytical", "MITRE-citing", "blue-team practitioner", "systematic"],
-  sites: ["sentryml-com", "guardml-io", "bestaisecuritytools-com", "aisecreviews-com", "mlcves-com"],
+  sites: ["aidefense-dev", "aimoderationtools-com", "aisecbench-com", "aisecreviews-com", "bestaisecuritytools-com", "guardml-io"],
 };
 const avatarUrl = "https://aisec-imagegen.th3gptoperator.workers.dev/?prompt=Professional%20headshot%20of%20Daniel%20Park%2C%20a%20Korean-American%20man%20in%20his%20mid-30s%2C%20dark%20technical%20background%2C%20analytical%20expression%2C%20photorealistic%2C%20professional%20headshot%2C%20square&aspect=square";
 ---
 <BaseLayout title={`About ${persona.name}`} description={persona.bioShort}>
-  <script type="application/ld+json" set:html={JSON.stringify({"@context": "https://schema.org", "@type": "Person", "name": "Daniel Park", "description": "Detection engineer and MITRE ATLAS contributor. Writes about defending AI systems using structured frameworks \u2014 not vendor hype. Blue-team-first, skeptical of AI-solves-everything narratives.", "url": "https://bestllmscanners.com/about", "knowsAbout": ["analytical", "MITRE-citing", "blue-team practitioner", "systematic"], "sameAs": ["https://sentryml.com/about", "https://guardml.io/about", "https://bestaisecuritytools.com/about", "https://aisecreviews.com/about", "https://mlcves.com/about"], "jobTitle": "Analytical"})}></script>
-
+  <script type="application/ld+json" set:html={JSON.stringify({"@context": "https://schema.org", "@type": "Person", "name": "Daniel Park", "description": "Detection engineer and MITRE ATLAS contributor. Writes about defending AI systems using structured frameworks \u2014 not vendor hype. Blue-team-first, skeptical of AI-solves-everything narratives.", "url": "https://bestllmscanners.com/about", "knowsAbout": ["analytical", "MITRE-citing", "blue-team practitioner", "systematic"], "sameAs": ["https://aidefense.dev/about", "https://aimoderationtools.com/about", "https://aisecbench.com/about", "https://aisecreviews.com/about", "https://bestaisecuritytools.com/about", "https://guardml.io/about"], "jobTitle": "Analytical"})}></script>
   <article class="prose mx-auto max-w-2xl py-16 px-4">
     <h1>About {persona.name}</h1>
     <img src={avatarUrl} alt={persona.name} width="200" height="200" style="border-radius:50%;object-fit:cover;float:right;margin:0 0 1rem 1.5rem;" loading="eager" />
