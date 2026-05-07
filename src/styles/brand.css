@@ -1,43 +1,54 @@
-/* Brand override for bestllmscanners-com — cluster=defensive.
- * Uses cluster-matching selector specificity (0,1,1) so this OVERRIDES the
- * cluster defaults from globals.css, which use the same selector specificity.
- * Source order wins; brand.css is imported after globals.css in BaseLayout.
- */
+/* Brand + visual variant for bestllmscanners-com
+ * cluster: defensive
+ * variant: v7_bold_caps_zine
+ * Generated 2026-05-07. Higher specificity than globals.css cluster rules. */
 
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600;700&display=swap");
 
-body[data-cluster="defensive"] {
+body[data-cluster='defensive'] {
   --bg: 236 254 255;
   --fg: 12 74 110;
   --surface: 207 250 254;
   --muted: 236 254 255;
   --muted-fg: 103 232 249;
   --border: 103 232 249;
-
   --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-body: "Source Code Pro", system-ui, sans-serif;
-
-  /* Override the accent ramp midpoints with brand accent.
-   * The 400-700 range is what most components use. */
   --accent-400: 8 145 178;
   --accent-500: 8 145 178;
   --accent-600: 8 145 178;
   --accent-700: 8 145 178;
-
-  /* Brand metadata */
   --brand-tone: "scanner-cyan";
   --brand-accent-rgb: 8 145 178;
+  --brand-variant: "v7_bold_caps_zine";
+}
+html.dark body[data-cluster='defensive'] {
+  --bg: 236 254 255; --fg: 12 74 110; --surface: 207 250 254;
+  --accent-500: 8 145 178; --accent-600: 8 145 178;
 }
 
-/* Same in dark mode (most brand books are dark-tone already) */
-html.dark body[data-cluster="defensive"] {
-  --bg: 236 254 255;
-  --fg: 12 74 110;
-  --surface: 207 250 254;
-  --muted: 236 254 255;
-  --muted-fg: 103 232 249;
-  --accent-400: 8 145 178;
-  --accent-500: 8 145 178;
-  --accent-600: 8 145 178;
-  --accent-700: 8 145 178;
+
+body[data-cluster='defensive'] {
+  --type-scale: 1.618;
+  --space-y: 0.75rem;
+}
+body[data-cluster='defensive'] h1 { font-size: calc(1rem * var(--type-scale) * var(--type-scale) * var(--type-scale) * var(--type-scale)); line-height: 1.05; }
+body[data-cluster='defensive'] h2 { font-size: calc(1rem * var(--type-scale) * var(--type-scale) * var(--type-scale)); line-height: 1.15; }
+body[data-cluster='defensive'] h3 { font-size: calc(1rem * var(--type-scale) * var(--type-scale)); line-height: 1.2; }
+body[data-cluster='defensive'] p { margin-block: var(--space-y); }
+
+
+/* Hero / header layout — variant: center */
+body[data-cluster='defensive'] .hero, body[data-cluster='defensive'] header.site-header { text-align: center; padding: 6rem 1rem; }
+
+/* Card style — variant: border-thick */
+body[data-cluster='defensive'] article { border: 4px solid rgb(12 74 110); padding: 1.5rem; }
+
+/* Accent application — variant: background-strip */
+body[data-cluster='defensive'] article::before { content: ''; display: block; height: 8px; background: rgb(8 145 178); margin-bottom: 1rem; }
+
+/* Border radius — variant uses 0 */
+body[data-cluster='defensive'] article,
+body[data-cluster='defensive'] .card {
+  border-radius: 0;
 }
