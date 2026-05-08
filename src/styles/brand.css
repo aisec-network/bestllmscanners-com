@@ -1,24 +1,35 @@
-/* Brand for bestllmscanners-com: cluster=defensive, variant=v7_bold_caps_zine */
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600;700&display=swap");
+/* Brand for bestllmscanners-com: identity=f17_sans_manrope_lora+p06_h135_ink+kiosk+v06_dispatch */
 
-body[data-cluster='defensive'] {
-  --bg: 236 254 255;
-  --fg: 12 74 110;
-  --surface: 207 250 254;
-  --muted: 236 254 255;
-  --muted-fg: 103 232 249;
-  --border: 103 232 249;
-  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-body: "Source Code Pro", system-ui, sans-serif;
-  --accent-400: 8 145 178;
-  --accent-500: 8 145 178;
-  --accent-600: 8 145 178;
-  --accent-700: 8 145 178;
-  --brand-tone: "scanner-cyan";
-  --brand-accent-rgb: 8 145 178;
-  --brand-variant: "v7_bold_caps_zine";
+body[data-cluster] {
+  --bg: 255 255 255;
+  --fg: 10 10 10;
+  --muted: 245 245 245;
+  --muted-fg: 80 80 80;
+  --border: 220 220 220;
+  --surface: 255 255 255;
+  --surface-alt: 245 245 245;
+  --font-display: Manrope, "Helvetica Neue", system-ui, sans-serif;
+  --font-body: Lora, "Iowan Old Style", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --brand-accent-rgb: 41 174 74;
+  --brand-identity-font: "f17_sans_manrope_lora";
+  --brand-identity-palette: "p06_h135_ink";
+  --brand-identity-layout: "kiosk";
+  --brand-identity-voice: "v06_dispatch";
 }
-html.dark body[data-cluster='defensive'] {
-  --bg: 236 254 255; --fg: 12 74 110; --surface: 207 250 254;
-  --accent-500: 8 145 178; --accent-600: 8 145 178;
+
+html.dark body[data-cluster] {
+  --bg: 10 10 10;
+  --fg: 240 240 240;
+  --muted: 22 22 22;
+  --muted-fg: 160 160 160;
+  --border: 50 50 50;
+  --surface: 10 10 10;
+  --surface-alt: 22 22 22;
+  --brand-accent-rgb: 71 225 109;
 }
+
+/* Density modifiers */
+body.density-loose  { --space-section: 5rem; }
+body.density-normal { --space-section: 3rem; }
+body.density-dense  { --space-section: 1.5rem; }
