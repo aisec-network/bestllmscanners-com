@@ -11,7 +11,7 @@ body[data-cluster] {
   --font-display: Manrope, "Helvetica Neue", system-ui, sans-serif;
   --font-body: Lora, "Iowan Old Style", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --brand-accent-rgb: 41 174 74;
+  --brand-accent-rgb: 0 0 0;
   --brand-identity-font: "f17_sans_manrope_lora";
   --brand-identity-palette: "p06_h135_ink";
   --brand-identity-layout: "kiosk";
@@ -26,7 +26,7 @@ html.dark body[data-cluster] {
   --border: 50 50 50;
   --surface: 10 10 10;
   --surface-alt: 22 22 22;
-  --brand-accent-rgb: 71 225 109;
+  --brand-accent-rgb: 255 255 255;
 }
 
 /* Density modifiers */
