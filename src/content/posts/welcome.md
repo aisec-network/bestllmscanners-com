@@ -13,9 +13,9 @@ Best LLM Scanners exists for the engineers shipping LLM features who got handed 
 
 What we publish:
 
-**Guardrails that actually hold.** Input filtering, output filtering, structured-output enforcement, refusal training, classifier-on-output patterns. What works in production, what breaks under adversarial pressure, what regresses silently when you upgrade the model.
+**Guardrails that actually hold.** Input filtering, output filtering, structured-output enforcement, refusal training, [classifier-on-output patterns](/posts/classifier-on-output-patterns/). What works in production, what breaks under adversarial pressure, what regresses silently when you upgrade the model.
 
-**Content moderation pipelines.** Multi-stage filtering, prompt-classifier ensembles, the Llama Guard / NeMo Guardrails / OpenAI moderation API tradeoffs, building your own classifiers for domain-specific abuse patterns.
+**Content moderation pipelines.** Multi-stage filtering, prompt-classifier ensembles, the [Llama Guard / NeMo Guardrails / OpenAI moderation API tradeoffs](/posts/llama-guard-vs-nemo-vs-openai-moderation/), building your own classifiers for domain-specific abuse patterns.
 
 **Defenses against the attacks the offensive side writes up.** When a new prompt injection technique or jailbreak goes public, we publish the corresponding defensive pattern. The two angles pair intentionally.
 

@@ -19,7 +19,7 @@ This post is about the side most teams under-measure: the cost of refusing reque
 
 False negatives have a discovery channel: someone notices the model said something it shouldn't, the screenshot goes around, and you have a ticket. False positives have no such channel. A user asks a reasonable question, gets refused, shrugs, and leaves. The next 99 users do the same. You see the churn in your retention numbers six weeks later, and even then it is hard to attribute to refusals specifically.
 
-If you do not deliberately instrument refusals, you will systematically underweight them in your tuning decisions. The first move is making them visible.
+If you do not deliberately instrument refusals, you will systematically underweight them in your tuning decisions. The first move is making them visible. One effective approach is deploying an async post-generation classifier on model outputs to surface refusal failures without adding latency — see [Classifier-on-Output Patterns: Catching Model Misbehavior Post-Generation](/posts/classifier-on-output-patterns/) for implementation details.
 
 ## Build a refusal eval set before tuning anything
 
@@ -45,7 +45,7 @@ This is the same shape of experiment you would run for any classifier threshold.
 
 Refusal behavior comes from two layers: the underlying model's safety tuning, and any classifier-on-input or classifier-on-output you have stacked on top. The model's tuning is a discrete choice — you have whatever the vendor shipped, or whatever your fine-tune produced. The classifier thresholds are continuous and tunable per-deployment.
 
-Tune the classifiers. The most actionable lever is the threshold at which you trigger a refusal. Llama Guard returns a probability; you choose the cutoff. NeMo Guardrails composes rails; you choose which rails are blocking versus advisory. OpenAI Moderation returns per-category scores; you choose which categories block at what thresholds.
+Tune the classifiers. The most actionable lever is the threshold at which you trigger a refusal. Llama [Guard](https://guardml.io/) returns a probability; you choose the cutoff. NeMo Guardrails composes rails; you choose which rails are blocking versus advisory. OpenAI Moderation returns per-category scores; you choose which categories block at what thresholds. For a production-level comparison of these three tools — latency, customization surface, and where each one breaks — see [Llama Guard vs NeMo Guardrails vs OpenAI Moderation API: Production Tradeoffs](/posts/llama-guard-vs-nemo-vs-openai-moderation/).
 
 Move thresholds in small increments. A swing from 0.5 to 0.3 in a moderation classifier can flip 5–10% of borderline requests from served to refused. That is not a small change. Run the eval suite on every adjustment, watch buckets A and B move together, and stop when the marginal harm rate reduction is no longer worth the marginal refusal rate increase.
 
@@ -56,3 +56,5 @@ After tuning, the threshold is only the current best answer. Model updates, prom
 Run the eval on every model version pin change, every guardrail config change, every prompt edit. Alert on bucket A false positive rate increasing by more than a couple of points or bucket B false negative rate increasing by more than a fraction of a point. Treat the alerts the same way you treat latency regressions: a number going the wrong way is a release blocker until someone explains it.
 
 The goal is not zero false positives. The goal is knowing what your rate is, knowing what it costs you, and noticing when it changes.
+
+For more context, [AI defense strategies](https://aidefense.dev/) covers related topics in depth.

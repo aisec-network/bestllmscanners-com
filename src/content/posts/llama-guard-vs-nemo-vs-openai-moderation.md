@@ -11,7 +11,7 @@ schema:
   type: "TechArticle"
 ---
 
-Three tools dominate the "drop-in guardrails" conversation in 2026: Meta's Llama Guard, NVIDIA's NeMo Guardrails, and OpenAI's Moderation API. They look interchangeable on a slide deck. They are not interchangeable in production. The choice changes your latency budget, your failure modes, your customization surface, and whether your moderation logic ever leaves your own infrastructure.
+Three tools dominate the "drop-in [guardrails](https://guardml.io/)" conversation in 2026: Meta's Llama Guard, NVIDIA's NeMo Guardrails, and OpenAI's Moderation API. They look interchangeable on a slide deck. They are not interchangeable in production. The choice changes your latency budget, your failure modes, your customization surface, and whether your moderation logic ever leaves your own infrastructure.
 
 ## What each tool actually is
 
@@ -41,7 +41,7 @@ OpenAI Moderation runs 30–80 ms round trip from US East, free at all volumes t
 
 ## Failure modes worth pre-mortem-ing
 
-Llama Guard's main failure is over-refusal on benign edge cases (the same disease that affects every safety-tuned LLM). You catch this only by running your own eval set against the configured policy before shipping, then re-running it on every model update.
+Llama Guard's main failure is over-refusal on benign edge cases (the same disease that affects every safety-tuned LLM). You catch this only by running your own eval set against the configured policy before shipping, then re-running it on every model update. For a structured method to build that eval set, measure false positive cost, and tune thresholds without breaking your harm rate, see [False Positive Cost in Production Refusal Systems: How to Measure and Tune](/posts/false-positive-cost-refusal-tuning/).
 
 NeMo Guardrails' failure mode is configuration complexity. A misordered rail chain can silently let unsafe content through. The framework's debug logs are usable but verbose; treat your Colang flows like production code and write tests against them.
 
@@ -54,3 +54,7 @@ Pick **Llama Guard** when you need a single, fast, on-prem classifier with edita
 Pick **NeMo Guardrails** when your moderation logic is itself a pipeline — multiple checks, dialog state, retrieval validation, tool-call constraints — and a one-shot classifier cannot express it.
 
 Pick **OpenAI Moderation API** when you are early, latency-sensitive, free-tier-constrained, and your data-handling posture allows the call. Plan to migrate before the policy fit problem catches up to you.
+
+Regardless of which tool you choose, pairing it with a [classifier-on-output pattern](/posts/classifier-on-output-patterns/) catches failures that input-side moderation alone will miss — including hallucinated harmful content and successful jailbreaks that cleared every upstream check.
+
+For more context, [AI defense strategies](https://aidefense.dev/) covers related topics in depth.

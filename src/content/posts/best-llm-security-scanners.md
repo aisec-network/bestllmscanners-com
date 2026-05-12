@@ -36,11 +36,11 @@ Garak is the closest thing LLM security has to Nessus. [Released and actively ma
 
 The architecture is modular: probes are decoupled from detectors, which makes it straightforward to add custom probes for domain-specific risks. Results log as JSONL, which integrates cleanly with whatever reporting pipeline you already have. For CI/CD, you can run a targeted subset of probes rather than the full suite, which brings scan time from hours to minutes.
 
-Garak's broad coverage makes it the right first tool for any LLM security assessment. Its weakness is that it runs single-turn probes by default — it does not natively simulate the kind of multi-turn conversation escalation that sophisticated attackers use against deployed agents.
+Garak's broad coverage makes it the right first tool for any LLM security assessment. Its weakness is that it runs single-turn probes by default — it does not natively simulate the kind of multi-turn conversation escalation that sophisticated attackers use against deployed agents. For a full technical breakdown of garak's probe architecture, supported target types, and CI/CD integration, see [Garak LLM Vulnerability Scanner: How It Works and When to Use It](/posts/garak-llm-vulnerability-scanner/).
 
 **PyRIT (Microsoft)**
 
-[PyRIT](https://www.microsoft.com/en-us/security/blog/2024/02/22/announcing-microsofts-open-automation-framework-to-red-team-generative-ai-systems/) (Python Risk Identification Toolkit) fills the multi-turn gap. Microsoft built it to automate the tedious parts of red teaming, and its architecture reflects that: targets, datasets, scorers, converters, orchestrators, and a memory layer that logs every prompt, transform, and result to SQLite or Azure SQL.
+[PyRIT](https://www.microsoft.com/en-us/security/blog/2024/02/22/announcing-microsofts-open-automation-framework-to-[red-team](https://aisecbench.com/)-generative-ai-systems/) (Python Risk Identification Toolkit) fills the multi-turn gap. Microsoft built it to automate the tedious parts of red teaming, and its architecture reflects that: targets, datasets, scorers, converters, orchestrators, and a memory layer that logs every prompt, transform, and result to SQLite or Azure SQL.
 
 The orchestrators are where PyRIT differentiates. `RedTeamingOrchestrator` runs multi-turn conversations where an attacker LLM generates follow-ups based on the target's responses. `CrescendoOrchestrator` gradually escalates — benign-seeming turns that become increasingly adversarial — which mirrors how real attackers approach well-guarded systems. `TreeOfAttacksWithPruningOrchestrator` explores multiple attack paths in parallel and prunes dead ends.
 
@@ -58,7 +58,7 @@ Promptfoo occupies the CI/CD niche. It runs assertions against LLM outputs — s
 
 LLM Guard is the leading open-source runtime option. It sits in front of your production API and applies a pipeline of analyzers to both incoming prompts and outgoing responses. On the input side: prompt injection detection, PII anonymization, toxic content classification, regex-based blocklists. On the output side: sensitive data detection, relevance scoring, factual consistency checks.
 
-The analyzer pipeline is configurable — you enable what you need and tune thresholds per use case. It runs locally, so no data leaves your environment, which matters for regulated industries. The tradeoff is that you own the infrastructure and the latency budget: adding multiple analyzers stacks up processing time, and you'll need to benchmark carefully to stay under acceptable response latencies for your users.
+The analyzer pipeline is configurable — you enable what you need and tune thresholds per use case. It runs locally, so no data leaves your environment, which matters for regulated industries. The tradeoff is that you own the infrastructure and the latency budget: adding multiple analyzers stacks up processing time, and you'll need to benchmark carefully to stay under acceptable response latencies for your users. For a production comparison of the runtime guardrail options most commonly layered alongside LLM Guard, see [Llama Guard vs NeMo Guardrails vs OpenAI Moderation API: Production Tradeoffs](/posts/llama-guard-vs-nemo-vs-openai-moderation/).
 
 **Vigil**
 
